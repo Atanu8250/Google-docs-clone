@@ -1,0 +1,38 @@
+* {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+}
+
+
+:root {
+     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+     line-height: 1.5;
+     font-weight: 400;
+     --primary-red-color: #ff4500;
+     --primary-black-color: #232323;
+}
+
+body{
+     overflow-x: hidden;
+}
+
+button {
+     padding: 0.3rem 0.7rem;
+     background-color: var(--primary-red-color);
+     border: none;
+     outline: 3px solid red;
+     outline-offset: 0.1rem;
+     color: #fff;
+     font-weight: 600;
+     letter-spacing: 1px;
+     text-transform: capitalize;
+     font-size: 17px;
+     transition: scale 100ms ease-in-out;
+     cursor: pointer;
+     white-space: nowrap;
+}
+
+button:not(:disabled):active {
+     scale: 0.95;
+}

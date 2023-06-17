@@ -1,0 +1,25 @@
+.error-box{
+     text-align: center;
+     padding: 3rem 5rem;
+}
+
+.error-icon{
+     height: 50px;
+     aspect-ratio: 1;
+     color: orange;
+}
+
+.error-heading{
+     margin-top: 5rem;
+     margin-bottom: 2rem;
+}
+
+.error-text{
+     color: #ee0303;
+}
+
+.error-button{
+     margin-block: 20px;
+     background-color: var(--primary-color);
+     color: #fff;
+}

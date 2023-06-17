@@ -1,0 +1,12 @@
+.footer{
+     width: 100svw;
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: space-around;
+     align-items: center;
+     background-color: var(--primary-black-color);
+     color: gray;
+     font-size: 14px;
+     letter-spacing: 1px;
+     padding: 1rem;
+}

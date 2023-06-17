@@ -1,0 +1,105 @@
+.auth-box {
+     position: relative;
+     height: 85.8svh;
+     width: 100vw;
+}
+
+.box {
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+     width: 400px;
+     padding: 30px;
+     background: rgba(0, 0, 0, 0.8);
+     box-sizing: border-box;
+     box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+     border-radius: 10px;
+     --white-color: #fff;
+}
+
+.box h2 {
+     margin: 0 0 30px;
+     padding: 0;
+     color: var(--white-color);
+     text-align: center;
+}
+
+.box .input-box {
+     position: relative;
+}
+
+.box .input-box input {
+     width: 100%;
+     padding: 10px 0;
+     font-size: 16px;
+     color: var(--white-color);
+     letter-spacing: 2px;
+     margin-bottom: 30px;
+     border: none;
+     border-bottom: 1px solid var(--white-color);
+     outline: none;
+     background: transparent;
+}
+
+.box .input-box label {
+     position: absolute;
+     top: 0;
+     left: 0;
+     letter-spacing: 2px;
+     padding: 10px 0;
+     font-size: 16px;
+     color: var(--white-color);
+     pointer-events: none;
+     transition: 0.5s;
+}
+
+.box .input-box input:focus~label,
+.box .input-box input:valid~label {
+     top: -25px;
+     left: 0;
+     color: var(--white-color);
+     font-size: 12px;
+}
+
+.box input[type="submit"] {
+     background: transparent;
+     border: none;
+     outline: none;
+     color: var(--white-color);
+     background: var(--primary-red-color);
+     padding: 10px 20px;
+     cursor: pointer;
+     border-radius: 5px;
+}
+
+.box input[type="submit"]:disabled {
+     cursor: not-allowed;
+     background: #c41e3a97;
+}
+
+.box .input-box span {
+     opacity: 0;
+     font-size: 18px;
+     padding: 10px;
+     position: absolute;
+     top: 0;
+     right: 0;
+     color: var(--white-color);
+     cursor: pointer;
+}
+
+.box .input-box input:focus~span,
+.box .input-box input:valid~span {
+     opacity: 1;
+}
+
+form>div:last-child {
+     display: flex;
+     width: 100%;
+     justify-content: space-between;
+     align-items: center;
+     font-size: 14px;
+     color: var(--primary-red-color);
+     cursor: pointer;
+}
