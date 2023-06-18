@@ -3,7 +3,8 @@ import * as docTypes from './docs.types';
 const initialState = {
      loading: false,
      error: false,
-     data: [],
+     publicDocs: [],
+     privateDocs: []
 }
 
 export const reducer = (state = initialState, { type, payload }) => {
@@ -21,8 +22,12 @@ export const reducer = (state = initialState, { type, payload }) => {
                return {...state, loading:false, error: false };
           }
 
-          case docTypes.DOC_GET_SUCCESS: {
-               return { loading: false, error: false, data: payload };
+          case docTypes.DOC_GET_PUBLIC_DOCS_SUCCESS: {
+               return {...state, loading: false, error: false, publicDocs: payload };
+          }
+
+          case docTypes.DOC_GET_PRIVATE_DOCS_SUCCESS: {
+               return {...state, loading: false, error: false, privateDocs: payload };
           }
 
           default: return state;

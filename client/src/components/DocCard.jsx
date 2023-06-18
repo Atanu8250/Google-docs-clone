@@ -38,22 +38,4 @@ function DocCard({ data: { author: { avatarURL, username }, createdAt, title, _i
      )
 }
 
-export default DocCard
-
-/*
-author: {
-  avatarURL: "https://cdn-icons-png.flaticon.com/512/666/666201.png"
-  createdAt: "2023-06-16T18:21:03.647Z"
-  email: "souvik@gmail.com"
-  updatedAt: "2023-06-16T18:21:03.647Z"
-  username: "Souvik"
-  _id: "648ca80f472d4d805831d923"
-}
-createdAt: "2023-06-16T18:41:11.796Z"
-doc: ""
-isPublic: true
-title: "check 1"
-updatedAt: "2023-06-16T18:41:11.796Z"
-__v: 0
-_id: "648cacc7d44b0a762060a938"
-*/ 
+export default DocCard;

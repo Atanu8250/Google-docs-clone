@@ -148,8 +148,80 @@ li {
      place-items: center;
 }
 
-.profile-loading>p{
+.profile-loading>p {
      font-size: 12px;
      color: var(--primary-black-color);
      font-weight: bold;
+}
+
+
+.create-doc-form {
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     gap: 5px;
+     max-width: 400px;
+     padding: 30px;
+     background: rgba(0, 0, 0, 0.8);
+     box-sizing: border-box;
+     box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+     border-radius: 10px;
+     --white-color: #fff;
+}
+
+.modal-input-box{
+     position: relative;
+}
+
+.modal-input-box input{
+     width: 100%;
+     padding: 10px 0;
+     font-size: 16px;
+     color: var(--white-color, #fff);
+     letter-spacing: 2px;
+     margin-bottom: 30px;
+     border: none;
+     border-bottom: 1px solid #fff;
+     outline: none;
+     background: transparent;
+}
+
+.modal-input-box label {
+     position: absolute;
+     top: 0;
+     left: 0;
+     letter-spacing: 2px;
+     padding: 10px 0;
+     font-size: 16px;
+     color: var(--white-color, #fff);
+     pointer-events: none;
+     transition: 0.5s;
+}
+
+.modal-input-checkbox {
+     display: flex;
+     gap: 10px;
+     align-items: center;
+     font-size: 16px;
+     color: var(--white-color, #fff);
+     margin-bottom: 30px;
+}
+
+
+.modal-input-checkbox input{
+     accent-color: var(--primary-red-color);
+     height: 18px;
+     width: 18px;
+}
+
+.modal-input-box input:focus~label,
+.modal-input-box input:valid~label {
+     top: -25px;
+     left: 0;
+     color: #fff;
+     font-size: 12px;
+}
+
+.create-doc-form button[type="submit"]:disabled{
+     cursor: wait;
 }

@@ -1,9 +1,56 @@
-button{
+main button{
      outline: none;
-     
 }
 
-.container{
+main button:not(:disabled):active{
+     scale: 1;
+}
+
+.doc-info {
+     padding: 0.5rem 3rem;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+}
+
+.doc-info>h2{
+     text-transform: capitalize;
+}
+
+.title-edit-input{
+     border: 1px solid;
+     padding: 5px;
+     border-radius: 5px;
+     outline: none;
+     font-size: 18px;
+     font-weight: 600;
+}
+
+.flex-box{
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     gap: 10px;
+}
+
+.flex-box svg{
+     font-size: 20px;
+     cursor: pointer;
+}
+
+.doc-info>button{
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     gap: 5px;
+     background: none;
+     color: var(--primary-black-color);
+     text-decoration: underline;
+     text-underline-offset: 0.2rem;
+}
+
+
+.container {
      position: relative;
 }
 

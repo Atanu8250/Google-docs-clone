@@ -37,6 +37,10 @@ button:not(:disabled):active {
      scale: 0.95;
 }
 
+button:disabled{
+     cursor: not-allowed;
+}
+
 /* width */
 ::-webkit-scrollbar {
      width: 8px;

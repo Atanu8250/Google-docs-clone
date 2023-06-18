@@ -3,9 +3,11 @@ import styles from '../styles/Navbar.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutAction } from '../redux/auth/auth.actions';
 import { BsCameraFill } from 'react-icons/bs';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Logo from './Logo';
+import Modal from './Modal';
+import { createDocAction } from '../redux/documents/docs.actions';
 
 
 const updateProfile = async (imgLink) => {
@@ -52,17 +54,50 @@ const updateProfile = async (imgLink) => {
 
 function Navbar() {
      const { user } = useSelector(store => store.authManager);
+     const { loading: createDocLoading } = useSelector(store => store.docsManager);
      const dispatch = useDispatch();
+     const navigate = useNavigate();
      const [loading, setLoading] = useState(false);
      const [showUserInfo, setShowUserInfo] = useState(false);
      const [userInfo, setUserInfo] = useState(JSON.parse(sessionStorage.getItem("USER")) || "");
      const [avatarUrl, setAvatarUrl] = useState('');
+     const [isOpenModal, setIsOpenModal] = useState(false);
 
+
+     // to open the modal
+     const openModal = useCallback(() => {
+          setIsOpenModal(true);
+     }, []);
+
+     // to close the modal
+     const closeModal = useCallback(() => {
+          setIsOpenModal(false);
+     }, []);
+
+     const handleCreateDoc = useCallback((e) => {
+          e.preventDefault();
+          const doc = {
+               title: e.target.title.value,
+          }
+          const isPbulicVal = e.target.isPublic.checked;
+          if (isPbulicVal) doc.isPublic = isPbulicVal;
+
+          const callback = (docId) => {
+               closeModal();
+               if (docId) navigate(`/docs/${docId}`);
+          }
+
+          dispatch(createDocAction({ doc, cb: callback }))
+     }, []);
+
+
+     // Log-out
      const handleLogout = useCallback(() => {
           dispatch(logoutAction());
      }, [dispatch])
 
 
+     // IMAGE upload in cloudinary
      const imageUpload = useCallback(async (e) => {
           const imgFile = e.target.files[0];
           if (!imgFile) return;
@@ -104,7 +139,10 @@ function Navbar() {
                </Link>
                <ul>
                     <li>
-                         <button className={styles['create-doc']}>Create Doc +</button>
+                         <button
+                              onClick={openModal}
+                              className={styles['create-doc']}
+                         >Create Doc +</button>
                     </li>
                     <li>
                          {
@@ -142,6 +180,23 @@ function Navbar() {
                          }
                     </li>
                </ul>
+
+
+               {/* MODAL */}
+               <Modal isOpen={isOpenModal} onClose={closeModal} title='Create Document'>
+                    <form className={styles['create-doc-form']} onSubmit={handleCreateDoc}>
+                         <div className={styles['modal-input-box']}>
+                              <input id="title" type="text" required />
+                              <label htmlFor='title'>Title</label>
+                         </div>
+                         <div className={styles['modal-input-checkbox']}>
+                              <input id="isPublic" type="checkbox" />
+                              <label htmlFor='isPublic'>Make it 🌎 Public</label>
+                         </div>
+
+                         <button type="submit" disabled={createDocLoading}>Create Document</button>
+                    </form>
+               </Modal>
           </div>
      )
 }

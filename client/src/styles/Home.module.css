@@ -48,10 +48,9 @@
 }
 
 .articles{
-     border: 1px solid red;
+     width: fit-content;
      margin-inline: auto;
      display: flex;
-     /* grid-template-columns: repeat(5, 1fr); */
      gap: 30px 20px;
      padding: 15px;
      flex-wrap: wrap;

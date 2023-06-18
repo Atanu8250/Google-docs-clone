@@ -1,18 +1,18 @@
-import styles from '../styles/Home.module.css';
-import DocCard from '../components/DocCard';
 import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { getAllDocsAction } from '../redux/documents/docs.actions';
-import Loading from '../components/Loading';
 import Logo from '../components/Logo';
+import Loading from '../components/Loading';
+import DocCard from '../components/DocCard';
+import styles from '../styles/Home.module.css';
+import { useSelector, useDispatch } from 'react-redux';
+import { getAllPublicDocsAction } from '../redux/documents/docs.actions';
 
 function Home() {
 
      const dispatch = useDispatch();
-     const { loading, error, data } = useSelector(store => store.docsManager);
+     const { loading, error, publicDocs } = useSelector(store => store.docsManager);
 
      useEffect(() => {
-          dispatch(getAllDocsAction())
+          dispatch(getAllPublicDocsAction())
      }, [])
 
      return (
@@ -34,7 +34,7 @@ function Home() {
                               error ? <h1>Error...</h1> :
                                    <div className={styles.articles}>
                                         {
-                                             data.map(el => <DocCard key={el._id} data={el} />)
+                                             publicDocs.map(el => <DocCard key={el._id} data={el} />)
                                         }
                                    </div>
                     }

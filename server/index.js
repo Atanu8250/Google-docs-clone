@@ -28,10 +28,9 @@ app.get('/', async (req, res) => {
 // Authentication routes
 app.use("/auth", authRouter);
 
-app.use(authCheck); // Authentication middleware
-
-app.use('/profile', profileRouter) // Routes for user profiles
 app.use('/docs', docsRouter); // Routes for documents
+app.use(authCheck); // Authentication middleware
+app.use('/profile', profileRouter) // Routes for user profiles
 
 // Wrong endpoint URL
 app.use('*', async (req, res) => {

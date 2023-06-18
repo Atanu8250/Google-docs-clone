@@ -1,9 +1,15 @@
 import Quill from 'quill';
-import 'quill/dist/quill.snow.css';
-import { useEffect, useCallback, useState } from 'react';
 import '../styles/SingleDoc.css';
+import 'quill/dist/quill.snow.css';
+import { useDispatch } from 'react-redux';
+import { MdPublic } from 'react-icons/md';
+import { RxCross2 } from 'react-icons/rx';
+import { BsCheckLg } from 'react-icons/bs';
+import { useEffect, useCallback, useState, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { RiGitRepositoryPrivateFill } from 'react-icons/ri';
 import useSocketConnection from '../customHooks/useSocketConnection';
+import { updateDocAction } from '../redux/documents/docs.actions';
 
 const TOOLBAR_OPTIONS = [
      [{ header: [1, 2, 3, 4, 5, 6, false] }],
@@ -30,15 +36,48 @@ const debouncer = (cb, delay) => {
      }
 }
 
-
 function SingleDoc() {
+
+     const dispatch = useDispatch();
      const navigate = useNavigate();
+     const titleRef = useRef(null);
      const [quill, setQuill] = useState();
      const { id: documentId } = useParams();
      const [doc, setDoc] = useState({});
+     const [isEditTitle, setIsEditTitle] = useState(false);
+     const [userInfo, setUserInfo] = useState(JSON.parse(sessionStorage.getItem("USER")) || "")
 
      // Connect to the socket server
      const socket = useSocketConnection(import.meta.env.VITE_APP_SERVER_URL);
+
+     // Change view to PUBLIC / PRIVATE
+     const handleViewChange = useCallback(() => {
+          const updateDocState = (val) => {
+               const newDoc = { ...doc, isPublic: val }
+               setDoc(newDoc);
+          }
+
+          const update = { isPublic: !doc.isPublic }
+          dispatch(updateDocAction({ docId: documentId, update, updateDocState }))
+     }, [dispatch, doc, documentId])
+
+     // Change Title
+     const handleTitleChange = useCallback(() => {
+          const newTitle = titleRef.current.value;
+          if (!newTitle || (newTitle === doc.title)) {
+               setIsEditTitle(false);
+               return
+          }
+
+          const updateDocState = (val) => {
+               const newDoc = { ...doc, title: val }
+               setDoc(newDoc);
+               setIsEditTitle(false);
+          }
+
+          const update = { title: newTitle }
+          dispatch(updateDocAction({ docId: documentId, update, updateDocState }))
+     }, [dispatch, doc, documentId])
 
 
      // Save the data in the database with debounce
@@ -68,12 +107,12 @@ function SingleDoc() {
           if (socket == null || quill == null) return
 
           socket.once("load-document", data => {
-               console.log('data:', data)
                if (data.message === 'success') {
                     setDoc(data.doc);
                     quill.setContents(data.doc.doc)
 
-                    const userInfo = JSON.parse(sessionStorage.getItem("USER"));
+                    const userInfoFSS = JSON.parse(sessionStorage.getItem("USER"));
+                    setUserInfo(userInfoFSS);
                     // Enable editing if it's your document, otherwise disable
                     if (data.doc.author === userInfo._id) quill.enable()
                     else quill.disable();
@@ -123,7 +162,39 @@ function SingleDoc() {
 
 
      return (
-          <div className='container' ref={wrapperRef}></div>
+          <main>
+               <div className='doc-info'>
+                    {
+                         isEditTitle ?
+                              <div className='flex-box'>
+                                   <input
+                                        ref={titleRef}
+                                        defaultValue={doc?.title}
+                                        className='title-edit-input' />
+                                   <div className='flex-box'>
+                                        <BsCheckLg onClick={handleTitleChange} />
+                                        <RxCross2 onClick={() => {
+                                             setIsEditTitle(false)
+                                        }} />
+                                   </div>
+                              </div> :
+                              <h2
+                                   onDoubleClick={() => {
+                                        console.log('dobule clicked')
+                                        setIsEditTitle(!isEditTitle)
+                                   }}
+                              >{doc?.title}</h2>
+                    }
+                    <button
+                         disabled={userInfo._id !== doc.author}
+                         onClick={handleViewChange}
+                    >
+                         {doc?.isPublic ? <RiGitRepositoryPrivateFill /> :
+                              <MdPublic />}Set as {doc?.isPublic ? 'Private' : 'Public'}
+                    </button>
+               </div>
+               <div className='container' ref={wrapperRef}></div>
+          </main >
      )
 }
 

@@ -15,7 +15,7 @@ import * as docTypes from './docs.types';
  * - GET ALL DOCUMENTS
  * @param {String} queryString - send the query for searching and filtering
  * */
-export const getAllDocsAction = (queryString = "") => async (dispatch) => {
+export const getAllPublicDocsAction = (queryString = "") => async (dispatch) => {
      // start loading
      dispatch({ type: docTypes.DOC_LOADING })
 
@@ -38,8 +38,8 @@ export const getAllDocsAction = (queryString = "") => async (dispatch) => {
           }
 
           // if request success then store the data otherwise set error
-          if (res.ok) dispatch({ type: docTypes.DOC_GET_SUCCESS, payload: data.data })
-          else dispatch({ type: docTypes.CARS_ERROR });
+          if (res.ok) dispatch({ type: docTypes.DOC_GET_PUBLIC_DOCS_SUCCESS, payload: data.data })
+          else dispatch({ type: docTypes.DOC_ERROR });
 
      } catch (error) {
           console.log('error:', error)
@@ -49,11 +49,47 @@ export const getAllDocsAction = (queryString = "") => async (dispatch) => {
 }
 
 
+export const getAllPrivateDocsAction = (queryString = "") => async (dispatch) => {
+     // start loading
+     dispatch({ type: docTypes.DOC_LOADING })
+
+     try {
+          const res = await fetch(`${import.meta.env.VITE_APP_SERVER_URL}/docs?${queryString}`, {
+               headers: {
+                    'Content-Type': 'application/json',
+                    'authorization': sessionStorage.getItem("TOKEN")
+               }
+          })
+
+          const data = await res.json();
+
+          // * IF TOKEN EXPIRED
+          if (res.status === 401) {
+               dispatch({ type: AUTH_LOGOUT });
+               // Getting undefined in the alert for `window.location.replace` function that's why giving "" using or operator
+               alert(`Session Expired! \nPlease Login again.. ${window.location.replace('/auth') || ""}`);
+               return;
+          }
+
+          // if request success then store the data otherwise set error
+          if (res.ok) dispatch({ type: docTypes.DOC_GET_PRIVATE_DOCS_SUCCESS, payload: data.data })
+          else dispatch({ type: docTypes.DOC_ERROR });
+
+     } catch (error) {
+          console.log('error:', error)
+          alert(error.message)
+          dispatch({ type: docTypes.DOC_ERROR });
+     }
+}
+
+
+
 /**
  * - CREATE NEW DOCUMENT
- * @param {Object} DOCUMENT - doc object for the creation
+ * @param {Object} doc - doc object for the creation
+ * @param {Function} cb - callback function for execution in success
  * */
-export const createDocAction = (doc) => async (dispatch) => {
+export const createDocAction = ({ doc, cb }) => async (dispatch) => {
      if (Object.keys(doc).length === 0) return;
 
      // start loading
@@ -80,7 +116,10 @@ export const createDocAction = (doc) => async (dispatch) => {
           }
 
           // if request success then store the data otherwise set error
-          if (res.ok) dispatch({ type: docTypes.DOC_SUCCESS });
+          if (res.ok) {
+               dispatch({ type: docTypes.DOC_SUCCESS })
+               cb(data.data._id);
+          }
           else dispatch({ type: docTypes.DOC_ERROR });
 
           alert(data.message)
@@ -100,10 +139,11 @@ export const createDocAction = (doc) => async (dispatch) => {
  * - UDPATE DOCUMENT DETAILS
  * @param {String} docId - doc id for which you want the changes should apply
  * @param {Object} update - Object with update fields
+ * @param {Function} updateDocState - fucntion to set doc data locally
  * */
-export const updateDocAction = ({ docId, update }) => async (dispatch) => {
-     if (!docId || Object.keys(update).length === 0) return;
+export const updateDocAction = ({ docId, update, updateDocState }) => async (dispatch) => {
      console.log({ docId, update })
+     if (!docId || Object.keys(update).length === 0) return;
      // start loading
      dispatch({ type: docTypes.DOC_LOADING })
 
@@ -128,7 +168,10 @@ export const updateDocAction = ({ docId, update }) => async (dispatch) => {
           }
 
           // if request success then store the data otherwise set error
-          if (res.ok) dispatch({ type: docTypes.DOC_SUCCESS })
+          if (res.ok) {
+               dispatch({ type: docTypes.DOC_SUCCESS })
+               updateDocState((update.isPublic === undefined ? data.data.title : data.data.isPublic));
+          }
           else dispatch({ type: docTypes.DOC_ERROR });
 
           alert(data.message)
@@ -171,7 +214,7 @@ export const deleteDocAction = (docId) => async (dispatch) => {
           }
 
           // if request success then store the data otherwise set error
-          if (res.ok) dispatch({type: docTypes.DOC_SUCCESS})
+          if (res.ok) dispatch({ type: docTypes.DOC_SUCCESS })
           else dispatch({ type: docTypes.DOC_ERROR });
 
           alert(data.message)
