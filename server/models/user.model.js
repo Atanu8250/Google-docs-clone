@@ -7,6 +7,7 @@ const userSchema = mongoose.Schema({
      username: {
           type: String,
           required: true,
+          immutable: true
      },
      // Define the avatarURL field as a string with a default value
      avatarURL: {
@@ -17,6 +18,7 @@ const userSchema = mongoose.Schema({
      email: {
           type: String,
           required: true,
+          immutable: true,
           unique: true
      },
      // Define the password field as a required string
