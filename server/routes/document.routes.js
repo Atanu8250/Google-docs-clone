@@ -1,10 +1,10 @@
 const express = require('express');
 const docValidator = require('../middlewares/doc.middleware');
-const { getAllDocs, getUserSpecificDoc, postDoc, updateDoc, deleteDoc } = require('../controllers/document.controller');
+const { getAllDocs, getUserSpecificDocs, postDoc, updateDoc, deleteDoc } = require('../controllers/document.controller');
 const docsRouter = express.Router();
 
 // Route for retrieving documents specific to a user
-docsRouter.get('/user', getUserSpecificDoc);
+docsRouter.get('/user', getUserSpecificDocs);
 
 // Routes for handling general document operations
 docsRouter.route('/')

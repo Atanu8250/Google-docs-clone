@@ -4,7 +4,7 @@ const DocsModel = require('../models/document.model');
 // GET all documents which are publically available
 const getAllDocs = async (req, res) => {
      try {
-          const publicDocs = await DocsModel.find({ isPublic: true }).populate('author', '-password');
+          const publicDocs = await DocsModel.find({ isPublic: true }).select('-doc').populate('author', '-password');
           res.status(200).send({ message: "Success", data: publicDocs });
      } catch (error) {
           console.log('error:', error)
@@ -17,7 +17,7 @@ const getAllDocs = async (req, res) => {
 
 
 // GET all documents created by a logged in user
-const getUserSpecificDoc = async (req, res) => {
+const getUserSpecificDocs = async (req, res) => {
      const userId = req.headers.userId;
      try {
           const docs = await DocsModel.find({ author: userId }).populate('author', '-password');
@@ -28,6 +28,22 @@ const getUserSpecificDoc = async (req, res) => {
                message: error.message,
                error
           });
+     }
+}
+
+
+// GET Single document 
+const getSingleDoc = async (docId) => {
+
+     try {
+          const matchedDoc = await DocsModel.findById(docId);
+
+          if (!matchedDoc) return { message: "Document doesn't exist!" };
+
+          return { message: "success", doc: matchedDoc };
+     } catch (error) {
+          console.log('error:', error)
+          return { message: error.message };
      }
 }
 
@@ -62,11 +78,11 @@ const updateDoc = async (req, res) => {
      try {
 
           const updatedDoc = await DocsModel.findByIdAndUpdate(docId, update, { new: true, runValidators: true });
-           /*
-           In the second object:
-           - The `new` key will help to get the updated document reference returned, not the old one.
-           - The `runValidators` key strictly forces following the schema validation.
-           */
+          /*
+          In the second object:
+          - The `new` key will help to get the updated document reference returned, not the old one.
+          - The `runValidators` key strictly forces following the schema validation.
+          */
 
           res.status(202).send({ message: `${updatedDoc.title} is successfully updated`, data: updatedDoc });
 
@@ -102,4 +118,4 @@ const deleteDoc = async (req, res) => {
 }
 
 
-module.exports = { getAllDocs, getUserSpecificDoc, postDoc, updateDoc, deleteDoc };
+module.exports = { getAllDocs, getUserSpecificDocs, getSingleDoc, postDoc, updateDoc, deleteDoc };
