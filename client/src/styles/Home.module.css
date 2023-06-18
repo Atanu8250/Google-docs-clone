@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&display=swap');
+
+.container{
+     width: 100%;
+     --handwriting-font: 'Caveat', cursive;
+}
+
+.banner{
+     width: 100vw;
+     height: 100dvh;
+     display: flex;
+}
+
+.banner>div{
+     flex: 1;
+}
+
+.banner>div:first-child{
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     gap: 3rem;
+}
+
+.banner>div:first-child>div{
+     width: 70%;
+}
+
+.banner>div:first-child>div>h2{
+     flex: 18;
+}
+
+.banner>div:first-child>h1{
+     width: 70%;
+     font-family: var(--handwriting-font);
+     letter-spacing: 2px;
+     font-weight: 700;
+}
+
+.banner>div:last-child>img{
+     width: 100%;
+}
+
+
+.articles-container{
+     padding: 4rem 2rem;
+}
+
+.articles{
+     border: 1px solid red;
+     margin-inline: auto;
+     display: flex;
+     /* grid-template-columns: repeat(5, 1fr); */
+     gap: 30px 20px;
+     padding: 15px;
+     flex-wrap: wrap;
+     justify-content: flex-start;
+     align-items: center;
+}

@@ -13,7 +13,7 @@
      --primary-black-color: #232323;
 }
 
-body{
+body {
      overflow-x: hidden;
 }
 
@@ -35,4 +35,24 @@ button {
 
 button:not(:disabled):active {
      scale: 0.95;
+}
+
+/* width */
+::-webkit-scrollbar {
+     width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+     background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+     background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+     background: #555;
 }

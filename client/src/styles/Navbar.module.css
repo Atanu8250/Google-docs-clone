@@ -10,13 +10,6 @@
      padding: 0.6rem 2rem;
 }
 
-.logo {
-     color: var(--primary-red-color);
-     text-transform: uppercase;
-     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-     letter-spacing: 1px;
-}
-
 a{
      text-decoration: none;
 }
@@ -53,10 +46,6 @@ li {
      object-fit: cover;
 }
 
-input[type='checkbox'] {
-     display: none;
-}
-
 .profile-main {
      position: relative;
 }
@@ -64,7 +53,7 @@ input[type='checkbox'] {
 .profile-info {
      position: absolute;
      top: 36px;
-     right: -350px;
+     right: -10px;
      background-color: var(--primary-black-color);
      border-radius: 5px;
      transition: right 200ms ease-in-out;
@@ -72,12 +61,6 @@ input[type='checkbox'] {
      flex-direction: column;
      align-items: center;
      padding: 1rem 1.2rem;
-}
-
-
-
-input[type='checkbox']:checked~.profile-info {
-     right: -20px;
 }
 
 
