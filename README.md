@@ -19,15 +19,14 @@ Company assignment of App Avangers
 Sign-up by providing a unique username, your email & password
 
 ----
-![signup](https://github.com/Atanu8250/Google-docs-clone/assets/94675329/28b654f6-37d2-470d-b163-234d7141ff7e)
-
+![signup](https://github.com/Atanu8250/Google-docs-clone/assets/94675329/694c4e2d-d39c-4a08-8006-31d2e28c95b4)
 
 
 ### :small_blue_diamond: Sign-in Page
 Sign-in with your unique credentails [email, password]
 
 ----
-![login](https://github.com/Atanu8250/Google-docs-clone/assets/94675329/09c39b83-05cc-4773-b8d5-e64dbd5dea23)
+![login](https://github.com/Atanu8250/Google-docs-clone/assets/94675329/627c8329-4a6a-4742-921e-d4df9aff86a8)
 
 
 
@@ -35,29 +34,28 @@ Sign-in with your unique credentails [email, password]
 After successfully authenticated you will be redirected to HOME page, there you will see the list of public documents.
 
 ----
-![home](https://github.com/Atanu8250/Google-docs-clone/assets/94675329/4f64a785-1d16-4d13-8992-e86f64466922)
+![home](https://github.com/Atanu8250/Google-docs-clone/assets/94675329/745b7985-9d09-4f11-aaa4-f5b1a60a3598)
 
 
 ### :small_blue_diamond: Create Document
 Create document by providing the name
 
 ----
-![Create document](https://github.com/Atanu8250/Google-docs-clone/assets/94675329/64a04c06-9aa6-4077-9c97-e635fd340c07)
-
+![create-doc](https://github.com/Atanu8250/Google-docs-clone/assets/94675329/fcbda199-9d20-4982-87d3-417e3468b283)
 
 
 ### :small_blue_diamond: My-applications
 Checkout your own private and public applications
 
 ----
-![my-documents](https://github.com/Atanu8250/Google-docs-clone/assets/94675329/9d388c90-40c6-4a2f-b0f5-025a93247455)
+![my-docs](https://github.com/Atanu8250/Google-docs-clone/assets/94675329/fc97cb27-7b39-4f0e-9084-6a951b1cd5a0)
 
 
-### :small_blue_diamond: Single-application
+### :small_blue_diamond: Single Document
 Edit and see single doc, edit only if it's your
 
 ----
-![single-doc](https://github.com/Atanu8250/Google-docs-clone/assets/94675329/feaf9c3d-6e61-4430-b7c8-8fefa11b1181)
+![single-doc](https://github.com/Atanu8250/Google-docs-clone/assets/94675329/3e83a666-3441-42e4-97b2-ae1e64eff392)
 
 
 
