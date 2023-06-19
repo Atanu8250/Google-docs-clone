@@ -122,7 +122,7 @@ function SingleDoc() {
                     behavior: 'smooth' // Use 'auto' for instant scroll
                });
           })()
-     })
+     }, [])
 
      // Load the content of the document
      useEffect(() => {
