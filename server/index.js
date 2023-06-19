@@ -52,7 +52,7 @@ const server = app.listen(process.env.PORT || 8080, async () => {
 // Socket.IO configuration
 const io = socket(server, {
      cors: {
-          origin: 'https://doc-depot-by-atanu.vercel.app/',
+          origin: 'https://doc-depot-by-atanu.vercel.app',
           methods: ['GET', 'POST', 'PATCH'],
      },
 });
