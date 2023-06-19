@@ -57,7 +57,8 @@ Checkout your own private and public applications
 Edit and see single doc, edit only if it's your
 
 ----
-![my-documents](https://github.com/Atanu8250/Google-docs-clone/assets/94675329/9d388c90-40c6-4a2f-b0f5-025a93247455)
+![single-doc](https://github.com/Atanu8250/Google-docs-clone/assets/94675329/feaf9c3d-6e61-4430-b7c8-8fefa11b1181)
+
 
 
 
