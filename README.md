@@ -1,5 +1,7 @@
 # Google-docs-clone
-Company assignment of App Avangers
+Company assignment of [App Avangers](https://www.appavengers.co/)
+
+Google-docs-clone (DOC DEPOT), here you can create your own docs and can see other's public docs. Can collaborate remotely in a doc, changes will be applied in real-time
 
 
 
