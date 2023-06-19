@@ -37,6 +37,7 @@ const debouncer = (cb, delay) => {
      }
 }
 
+
 function SingleDoc() {
 
      const dispatch = useDispatch();
@@ -111,6 +112,17 @@ function SingleDoc() {
           const quillInstance = new Quill(editor, { theme: 'snow', modules: { toolbar: TOOLBAR_OPTIONS } });
           setQuill(quillInstance);
      }, [])
+
+
+     // Scroll to the top of the page
+     useEffect(() => {
+          (function () {
+               window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth' // Use 'auto' for instant scroll
+               });
+          })()
+     })
 
      // Load the content of the document
      useEffect(() => {
