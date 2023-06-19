@@ -1,8 +1,8 @@
-main button{
+main button {
      outline: none;
 }
 
-main button:not(:disabled):active{
+main button:not(:disabled):active {
      scale: 1;
 }
 
@@ -13,11 +13,11 @@ main button:not(:disabled):active{
      justify-content: space-between;
 }
 
-.doc-info>h2{
+.doc-info>h2 {
      text-transform: capitalize;
 }
 
-.title-edit-input{
+.title-edit-input {
      border: 1px solid;
      padding: 5px;
      border-radius: 5px;
@@ -26,19 +26,27 @@ main button:not(:disabled):active{
      font-weight: 600;
 }
 
-.flex-box{
+.flex-box {
      display: flex;
      justify-content: center;
      align-items: center;
      gap: 10px;
 }
 
-.flex-box svg{
+.flex-box svg {
      font-size: 20px;
      cursor: pointer;
 }
 
-.doc-info>button{
+.doc-info>div:last-child {
+     display: flex;
+}
+
+.doc-info button:last-child {
+     color: var(--primary-red-color);
+}
+
+.doc-info button {
      display: flex;
      align-items: center;
      justify-content: center;
@@ -71,6 +79,7 @@ main button:not(:disabled):active{
 
 .container .ql-toolbar.ql-snow {
      display: flex;
+     flex-wrap: wrap;
      justify-content: center;
      position: sticky;
      top: 55px;
@@ -101,5 +110,24 @@ main button:not(:disabled):active{
 
      .container .ql-toolbar.ql-snow {
           display: none;
+     }
+}
+
+
+@media all and (width < 769px) {
+     .container .ql-editor {
+          padding: 0.5in;
+     }
+}
+
+
+@media all and (width < 450px) {
+     .doc-info{
+          flex-direction: column;
+          gap: 10px;
+     }
+
+     .container .ql-editor {
+          padding: 0.2in;
      }
 }

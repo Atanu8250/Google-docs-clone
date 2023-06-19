@@ -1,17 +1,21 @@
 /* eslint-disable react/prop-types */
-import styles from '../styles/DocCard.module.css';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
+import styles from '../styles/DocCard.module.css';
+import { MdPublic } from 'react-icons/md';
+import { RiGitRepositoryPrivateFill } from 'react-icons/ri';
 
+// Get date and time in proper format
 const getDateAndTime = (date) => {
      return moment(date).format("MMMM Do [at] h:mmA")
 }
 
+// Get random background colors for profiles
 const getRandomBG = () => {
      return `rgba(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, 0.4`
 }
 
-function DocCard({ data: { author: { avatarURL, username }, createdAt, title, _id: docId } }) {
+function DocCard({ data: { author: { avatarURL, username }, createdAt, title, isPublic, _id: docId } }) {
 
      return (
           <Link to={`/docs/${docId}`}>
@@ -32,6 +36,9 @@ function DocCard({ data: { author: { avatarURL, username }, createdAt, title, _i
                     </section>
                     <section className={styles.icon}>
                          <img src='/doc.svg' alt='doc-icon' />
+                         <div className={styles['doc-view-status']}>
+                              {isPublic ? <MdPublic /> : <RiGitRepositoryPrivateFill />}
+                         </div>
                     </section>
                </article>
           </Link>

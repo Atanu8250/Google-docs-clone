@@ -28,6 +28,7 @@ function Home() {
                          <img src="/image-4.png" alt="banner-image" />
                     </div>
                </div>
+               <h1 className={styles['articles-heading']}>Public <span>Documents</span></h1>
                <div className={styles['articles-container']}>
                     {
                          loading ? <Loading /> :

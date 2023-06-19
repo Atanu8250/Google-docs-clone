@@ -170,7 +170,7 @@ function Navbar() {
                                                        <figcaption className={styles['user-name']}>{userInfo.username}</figcaption>
                                                   </figure>
 
-                                                  <button>My Documents</button>
+                                                  <button onClick={() => navigate('/my-docs')}>My Documents</button>
 
                                                   <button onClick={handleLogout}>Log out</button>
                                              </div>

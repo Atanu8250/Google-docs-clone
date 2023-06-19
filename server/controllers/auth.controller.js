@@ -25,7 +25,12 @@ const userSignin = async (req, res) => {
           bcrypt.compare(password, matchedUser._doc.password, function (err, result) {
                if (err) {
                     // If an error occurs during password comparison, return an error
-                    return res.status(400).send({ message: "Wrong Password!", error: err });
+                    return res.status(400).send({ message: "Error in decryption", error: err });
+               }
+
+               if (!result) {
+                    // If an password doesn't match during password comparison
+                    return res.status(400).send({ message: "Wrong Password!" });
                }
 
                // Generate a JSON Web Token (JWT) for the authenticated user

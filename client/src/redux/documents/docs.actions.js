@@ -54,7 +54,7 @@ export const getAllPrivateDocsAction = (queryString = "") => async (dispatch) =>
      dispatch({ type: docTypes.DOC_LOADING })
 
      try {
-          const res = await fetch(`${import.meta.env.VITE_APP_SERVER_URL}/docs?${queryString}`, {
+          const res = await fetch(`${import.meta.env.VITE_APP_SERVER_URL}/docs/user?${queryString}`, {
                headers: {
                     'Content-Type': 'application/json',
                     'authorization': sessionStorage.getItem("TOKEN")
@@ -187,8 +187,9 @@ export const updateDocAction = ({ docId, update, updateDocState }) => async (dis
 /**
  * - DELETE DOCUMENT
  * @param {String} docId - doc id for which you want to delete
+ * @param {Function} cb - execute the cb function if the request succed
  * */
-export const deleteDocAction = (docId) => async (dispatch) => {
+export const deleteDocAction = ({ docId, cb }) => async (dispatch) => {
      if (!docId) return;
 
      // start loading
@@ -214,7 +215,10 @@ export const deleteDocAction = (docId) => async (dispatch) => {
           }
 
           // if request success then store the data otherwise set error
-          if (res.ok) dispatch({ type: docTypes.DOC_SUCCESS })
+          if (res.ok) {
+               dispatch({ type: docTypes.DOC_SUCCESS });
+               cb();
+          }
           else dispatch({ type: docTypes.DOC_ERROR });
 
           alert(data.message)

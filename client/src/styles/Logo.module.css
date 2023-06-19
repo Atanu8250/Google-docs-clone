@@ -20,3 +20,20 @@
 .logo>h2 {
      flex: 25;
 }
+
+
+@media all and (width < 800px) {
+     .logo>h2 {
+          flex: 20;
+     }  
+}
+
+@media all and (width < 600px) {
+     .logo>h2 {
+          display: none;
+     }  
+
+     .logo>div:first-child {
+          width: 30px;
+     }
+}

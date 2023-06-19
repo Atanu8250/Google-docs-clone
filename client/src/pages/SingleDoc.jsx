@@ -5,11 +5,12 @@ import { useDispatch } from 'react-redux';
 import { MdPublic } from 'react-icons/md';
 import { RxCross2 } from 'react-icons/rx';
 import { BsCheckLg } from 'react-icons/bs';
-import { useEffect, useCallback, useState, useRef } from 'react';
+import { RiDeleteBin6Line } from 'react-icons/ri';
 import { useParams, useNavigate } from 'react-router-dom';
 import { RiGitRepositoryPrivateFill } from 'react-icons/ri';
+import { useEffect, useCallback, useState, useRef } from 'react';
+import { deleteDocAction, updateDocAction } from '../redux/documents/docs.actions';
 import useSocketConnection from '../customHooks/useSocketConnection';
-import { updateDocAction } from '../redux/documents/docs.actions';
 
 const TOOLBAR_OPTIONS = [
      [{ header: [1, 2, 3, 4, 5, 6, false] }],
@@ -76,14 +77,23 @@ function SingleDoc() {
           }
 
           const update = { title: newTitle }
-          dispatch(updateDocAction({ docId: documentId, update, updateDocState }))
-     }, [dispatch, doc, documentId])
+          if (userInfo._id === doc.author) dispatch(updateDocAction({ docId: documentId, update, updateDocState }))
+     }, [dispatch, doc, documentId, userInfo?._id])
+
+
+     // Delete document
+     const handleDeleteDoc = useCallback(() => {
+          const cb = () => {
+               navigate('/');
+          }
+          if (userInfo._id === doc.author) dispatch(deleteDocAction({ docId: documentId, cb }))
+     }, [])
 
 
      // Save the data in the database with debounce
      const SaveDocWithDebounce = debouncer(() => {
           socket.emit("save-document", quill.getContents())
-     }, 1500)
+     }, 800)
 
      /*
      Creating it to store the ref because while using
@@ -180,18 +190,25 @@ function SingleDoc() {
                               </div> :
                               <h2
                                    onDoubleClick={() => {
-                                        console.log('dobule clicked')
-                                        setIsEditTitle(!isEditTitle)
+                                        if (userInfo._id === doc.author) setIsEditTitle(true)
                                    }}
                               >{doc?.title}</h2>
                     }
-                    <button
-                         disabled={userInfo._id !== doc.author}
-                         onClick={handleViewChange}
-                    >
-                         {doc?.isPublic ? <RiGitRepositoryPrivateFill /> :
-                              <MdPublic />}Set as {doc?.isPublic ? 'Private' : 'Public'}
-                    </button>
+                    <div>
+                         <button
+                              disabled={userInfo._id !== doc.author}
+                              onClick={handleViewChange}
+                         >
+                              {doc?.isPublic ? <RiGitRepositoryPrivateFill /> :
+                                   <MdPublic />}Set as {doc?.isPublic ? 'Private' : 'Public'}
+                         </button>
+                         <button
+                              disabled={userInfo._id !== doc.author}
+                              onClick={handleDeleteDoc}
+                         >
+                              <RiDeleteBin6Line />
+                         </button>
+                    </div>
                </div>
                <div className='container' ref={wrapperRef}></div>
           </main >

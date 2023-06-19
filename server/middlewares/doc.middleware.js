@@ -8,7 +8,7 @@ const docValidator = async (req, res, next) => {
           const matchedDoc = await DocsModel.findById(docId);
 
           if (!matchedDoc) return res.status(404).send({ message: "Document doesn't exist" });
-          if (matchedDoc.author.toString() !== userId) return res.status(401).send({ message: "You're unauthorized for this operation!" });
+          if (matchedDoc.author.toString() !== userId) return res.status(400).send({ message: "You're unauthorized for this operation!" });
 
           next();
 

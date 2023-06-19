@@ -7,14 +7,16 @@ const Home = lazy(() => import('../pages/Home'));
 const Auth = lazy(() => import('../pages/Auth'));
 const NotFound = lazy(() => import('../pages/NotFound'));
 const SingleDoc = lazy(() => import('../pages/SingleDoc'));
+const MyDocs = lazy(() => import('../pages/MyDocs'));
 
 function AllRoutes() {
      return (
           <LazyLoadHandler>
                <Routes>
                     <Route exact path='/' element={<Home />} />
-                    <Route exact path='/auth' element={<Auth />} />
-                    <Route exact path='/docs/:id' element={<PrivateRoute><SingleDoc /></PrivateRoute>} />
+                    <Route path='/auth' element={<Auth />} />
+                    <Route path='/docs/:id' element={<PrivateRoute><SingleDoc /></PrivateRoute>} />
+                    <Route path='/my-docs' element={<PrivateRoute><MyDocs /></PrivateRoute>} />
                     <Route path='*' element={<NotFound />} />
                </Routes>
           </LazyLoadHandler>
