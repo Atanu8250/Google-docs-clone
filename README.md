@@ -19,35 +19,46 @@ Company assignment of App Avangers
 Sign-up by providing a unique username, your email & password
 
 ----
-![signup]()
+![signup](https://github.com/Atanu8250/Google-docs-clone/assets/94675329/28b654f6-37d2-470d-b163-234d7141ff7e)
+
 
 
 ### :small_blue_diamond: Sign-in Page
 Sign-in with your unique credentails [email, password]
 
 ----
-![signin]()
+![login](https://github.com/Atanu8250/Google-docs-clone/assets/94675329/09c39b83-05cc-4773-b8d5-e64dbd5dea23)
+
 
 
 ### :small_blue_diamond: Home Page
 After successfully authenticated you will be redirected to HOME page, there you will see the list of public documents.
 
 ----
-![home]()
+![home](https://github.com/Atanu8250/Google-docs-clone/assets/94675329/4f64a785-1d16-4d13-8992-e86f64466922)
 
 
 ### :small_blue_diamond: Create Document
 Create document by providing the name
 
 ----
-![create-document]()
+![Create document](https://github.com/Atanu8250/Google-docs-clone/assets/94675329/64a04c06-9aa6-4077-9c97-e635fd340c07)
+
 
 
 ### :small_blue_diamond: My-applications
 Checkout your own private and public applications
 
 ----
-![my-applications]()
+![my-documents](https://github.com/Atanu8250/Google-docs-clone/assets/94675329/9d388c90-40c6-4a2f-b0f5-025a93247455)
+
+
+### :small_blue_diamond: Single-application
+Edit and see single doc, edit only if it's your
+
+----
+![my-documents](https://github.com/Atanu8250/Google-docs-clone/assets/94675329/9d388c90-40c6-4a2f-b0f5-025a93247455)
+
 
 
 
