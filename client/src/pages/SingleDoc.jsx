@@ -83,12 +83,12 @@ function SingleDoc() {
 
 
      // Delete document
-     const handleDeleteDoc = useCallback(() => {
+     const handleDeleteDoc = () => {
           const cb = () => {
                navigate('/');
           }
           if (userInfo._id === doc.author) dispatch(deleteDocAction({ docId: documentId, cb }))
-     }, [])
+     }
 
 
      // Save the data in the database with debounce
@@ -119,7 +119,7 @@ function SingleDoc() {
           (function () {
                window.scrollTo({
                     top: 0,
-                    behavior: 'smooth' // Use 'auto' for instant scroll
+                    behavior: 'smooth' 
                });
           })()
      }, [])
@@ -215,8 +215,8 @@ function SingleDoc() {
                                    <MdPublic />}Set as {doc?.isPublic ? 'Private' : 'Public'}
                          </button>
                          <button
-                              disabled={userInfo._id !== doc.author}
                               onClick={handleDeleteDoc}
+                              disabled={userInfo._id !== doc.author}
                          >
                               <RiDeleteBin6Line />
                          </button>

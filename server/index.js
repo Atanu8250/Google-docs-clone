@@ -53,6 +53,7 @@ const server = app.listen(process.env.PORT || 8080, async () => {
 const io = socket(server, {
      cors: {
           origin: 'https://doc-depot-by-atanu.vercel.app',
+          // origin: 'http://localhost:5173',
           methods: ['GET', 'POST', 'PATCH'],
      },
 });
